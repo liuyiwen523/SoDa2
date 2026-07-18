@@ -1,0 +1,29 @@
+# -*- coding: utf-8 -*-
+"""
+Created on 14:11,2021/10/15
+@author: ZhangTeng
+"""
+import numpy as np
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+import torch
+
+def predict(y_true,y_pred):
+    MAE = 0
+    MAPE = 0
+    y_pred = y_pred.cpu().data.numpy()
+    y_true = y_true.cpu().data.numpy()
+
+    #MAE = mean_absolute_error(y_true,y_pred)
+    #MAPE = torch.mean(np.abs((y_true - y_pred) / y_true))
+    RMSE = np.sqrt(mean_squared_error(y_true,y_pred))
+    R2 = r2_score(y_true,y_pred)
+
+
+    #print("MAE  {}".format(mean_absolute_error(y_true,y_pred)))
+    #print("MAPE {}".format(np.mean(np.abs((y_true - y_pred) / y_true))))
+    #print("RMSE  {}".format(np.sqrt(mean_squared_error(y_true,y_pred))))
+    #print("R2   {}".format(r2_score(y_true,y_pred)))
+    #result = np.array([MAE,MAPE,RMSE,R2])
+
+
+    return MAE,MAPE,RMSE,R2
